@@ -38,7 +38,8 @@ M1_Colombia<-ts(M1_Colombia[,-1], start = 2000, frequency = 12)
 GDP_CH<-ts(GDP_CH[,-1], start = 1980, frequency = 4)# Note: Time series starts in the year 1980 with a quarterly frequency
 
 # Exercise c): Plotting Swiss GDP
-plot(GDP_CH, main="Quarterly GDP of Switzerland", ylab="In CHF mio", xlab="Year")
+plot(GDP_CH, main="Quarterly GDP of Switzerland", ylab="In CHF mio", xlab="Year")+grid()
+
 
 # Alternatively:
 #install.packages("zoo")
@@ -54,20 +55,22 @@ plot(GDP_decomposed, xlab="Year")
 names(GDP_decomposed)
 seasonality<-GDP_decomposed$seasonal
 GDP_seasonally_adjusted<-GDP_CH-seasonality
-plot(GDP_CH-seasonality, main="Seasonally adjusted GDP", ylab="In CHF bn", xlab="Year")
+plot(GDP_CH-seasonality, main="Seasonally adjusted GDP", ylab="In CHF bn", xlab="Year")+grid()
+
 
 
 ### Do it yourself 2! ###
 # Exercise a): Calculating continuous SPI returns
-SPI_returns<-???
+SPI_returns<-diff(log(SPI)) #log(Y_t)-log(Y_t-1)
+
 
 # Exercise b): Plotting histogram of SPI returns
-hist(???)
+hist(SPI_returns,breaks=50,main= "Histogram of SPI returns",xlab = "SPI Returns")
 
 # Exercise c): Calculating central moments of SPI returns
-#install.packages("fBasics")
+install.packages("fBasics")
 library(fBasics)
-basicStats(???)
+basicStats(SPI_returns)
 
 # Alternative visualization: Boxplot
 boxplot(SPI_returns, main="Boxplot of SPI Returns")
