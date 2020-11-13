@@ -5,6 +5,7 @@
 #setwd("~/TSA in Finance") # Sets working directory to the newly created folder
 
 # Alternatively: Set working directory to an exising folder, for example:
+
 setwd("C:/Users/annam/OneDrive/Documents/HSLU/MSC/HS20/TSA/Exercises_TSA/TSA/SW01")
 
 
@@ -78,23 +79,29 @@ boxplot(SPI_returns, main="Boxplot of SPI Returns")
 
 ### Do it yourself 3! ###
 # Exercise a): Plotting SPI and M1 of Colombia
-plot(???)
-plot(???)
+plot(SPI, main="Swiss Performance Index", ylab="Index points", xlab="Year")
+plot(M1_Colombia, main="Chilean M1", ylab="In bn $", xlab="Year")
 
 # Exercise b): Scatterplotting SPI and M1 of Colombia and calculating correlation
-plot(x=???, y=???)
-cor(???)
+
+plot(M1_Colombia,SPI, ylab = "SPI", xlab = "Colombian M1 (in bn $)", main="Scatterplot of SPI vs. Colombian M1")
+cor(M1_Colombia,SPI)
 
 # Exercise c): Scatterplotting SPI returns and growth rates of M1 of Colombia and calculating correlation
-M1_Colombia_growth<-???
-plot(x=???, y=???)
-cor(???,???)
+plot(diff(log(M1_Colombia)),SPI_returns, ylab = "SPI returns", xlab = "Growth of Colombia M1", main="Scatterplot of SPI returns vs. growth of Colombian M1")
+cor(diff(log(M1_Colombia)),SPI_returns)
 
 # Exercise d): Replicating the ACF of the SPI and testing for stationarity
-acf(???)
-acf(???)
+# Calculation of ACF for SPI in levels
+acf(SPI, main="ACF of SPI")
+# Calculation of ACF for SPI returns
+acf(SPI_returns, main="ACF of SPI returns")
+
+
 
 #install.packages("tseries")
 library(tseries)
-adf.test(???)
-adf.test(???)
+# Testing of SPI in levels for stationarity
+adf.test(SPI)
+# Testing of SPI returns for stationarity
+adf.test(SPI_returns)
